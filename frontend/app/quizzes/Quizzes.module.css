@@ -1,0 +1,18 @@
+.createLink {
+  display: block;
+  width: 150px;
+  margin-bottom: 50px;
+  background-color: #c7e0f6;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 0.9;
+  letter-spacing: 0em;
+  color: #0c1118;
+}
+
+.createLink:hover,
+.createLink:focus {
+  opacity: 0.8;
+}
