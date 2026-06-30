@@ -16,8 +16,8 @@ model Question {
   id             String @id @default(cuid())
   text           String
   type           String
-  options        String?
-  correctAnswers String?
+  options        Json?
+  correctAnswers Json?
 
   quizId String
   quiz   Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
