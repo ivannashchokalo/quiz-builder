@@ -3,7 +3,7 @@
 import QuizzesList from "@/components/QuizzesList/QuizzesList";
 import { getAllQuizzes } from "@/lib/quiz";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import Button from "@/components/Button/Button";
 import styles from "./Quizzes.module.css";
 
 export default function QuizzesClient() {
@@ -15,10 +15,14 @@ export default function QuizzesClient() {
 
   return (
     <>
-      <Link href="/quizzes/create" className={styles.createLink}>
-        Create Quiz
-      </Link>
-      {data && <QuizzesList quizzes={data} />}
+      <Button href="/create" text="Create Quiz" className={styles.button} />
+      {data?.length ? (
+        <QuizzesList quizzes={data} />
+      ) : (
+        <p className={styles.emptyText}>
+          No quizzes yet. Create your first quiz!
+        </p>
+      )}
     </>
   );
 }

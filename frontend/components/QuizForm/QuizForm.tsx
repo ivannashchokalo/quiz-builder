@@ -5,6 +5,9 @@ import type { CreateQuizRequest } from "@/types/quiz";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import styles from "./QuizForm.module.css";
+import Icon from "../Icon/Icon";
+import Button from "../Button/Button";
 
 type QuestionType = "boolean" | "input" | "checkbox";
 
@@ -116,29 +119,23 @@ export default function QuizForm() {
             : [String(question.answer)],
       })),
     };
-
     mutate(body);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <input
         type="text"
         placeholder="Quiz title"
         value={quiz.title}
         onChange={handleTitleChange}
+        required
+        className={styles.input}
       />
 
       {quiz.questions.map((question, index) => (
-        <div
-          key={index}
-          style={{
-            border: "1px solid gray",
-            padding: 20,
-            marginBottom: 20,
-          }}
-        >
-          <h3>Question {index + 1}</h3>
+        <div className={styles.questionWrapper} key={index}>
+          <h3 className={styles.formTitle}>Question {index + 1}</h3>
 
           <input
             type="text"
@@ -153,8 +150,11 @@ export default function QuizForm() {
                 questions,
               });
             }}
+            required
+            className={styles.input}
           />
           <select
+            className={styles.select}
             value={question.type}
             onChange={(e) => {
               const questions = [...quiz.questions];
@@ -177,9 +177,10 @@ export default function QuizForm() {
           </select>
 
           {question.type === "boolean" && (
-            <>
-              <label>
+            <div className={styles.radioWrapper}>
+              <label className={styles.radioLabel}>
                 <input
+                  className={styles.radio}
                   type="radio"
                   checked={question.answer === true}
                   onChange={() => {
@@ -195,8 +196,9 @@ export default function QuizForm() {
                 True
               </label>
 
-              <label style={{ marginLeft: 20 }}>
+              <label className={styles.radioLabel}>
                 <input
+                  className={styles.radio}
                   type="radio"
                   checked={question.answer === false}
                   onChange={() => {
@@ -211,7 +213,7 @@ export default function QuizForm() {
                 />
                 False
               </label>
-            </>
+            </div>
           )}
 
           {question.type === "input" && (
@@ -228,6 +230,7 @@ export default function QuizForm() {
                   questions,
                 });
               }}
+              className={styles.input}
             />
           )}
 
@@ -250,52 +253,90 @@ export default function QuizForm() {
                         questions,
                       });
                     }}
+                    className={styles.input}
                   />
 
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={option.checked}
-                      onChange={(e) => {
-                        const questions = [...quiz.questions];
+                  <div className={styles.optionsWrapper}>
+                    {/* <label>
+                      <input
+                        type="checkbox"
+                        checked={option.checked}
+                        onChange={(e) => {
+                          const questions = [...quiz.questions];
 
-                        questions[index].options[optionIndex].checked =
-                          e.target.checked;
+                          questions[index].options[optionIndex].checked =
+                            e.target.checked;
 
-                        setQuiz({
-                          ...quiz,
-                          questions,
-                        });
-                      }}
+                          setQuiz({
+                            ...quiz,
+                            questions,
+                          });
+                        }}
+                      />
+                      Correct
+                    </label> */}
+                    <label className={styles.checkboxLabel}>
+                      <input
+                        className={styles.checkbox}
+                        type="checkbox"
+                        checked={option.checked}
+                        onChange={(e) => {
+                          const questions = [...quiz.questions];
+
+                          questions[index].options[optionIndex].checked =
+                            e.target.checked;
+
+                          setQuiz({
+                            ...quiz,
+                            questions,
+                          });
+                        }}
+                      />
+                      <span className={styles.customCheckbox}>
+                        <Icon
+                          name="checkmark"
+                          className={styles.customCheckIcon}
+                        />
+                      </span>
+                      Correct
+                    </label>
+                    <Button
+                      text="Delete option"
+                      onClick={() => removeOption(index, optionIndex)}
+                      variant="secondary"
+                      className={styles.deleteOptionBtn}
                     />
-                    Correct
-                  </label>
-
-                  <button
-                    type="button"
-                    onClick={() => removeOption(index, optionIndex)}
-                  >
-                    Delete option
-                  </button>
+                  </div>
                 </div>
               ))}
-
-              <button type="button" onClick={() => addOption(index)}>
-                Add option
-              </button>
+              <Button
+                text="Add option"
+                onClick={() => addOption(index)}
+                className={styles.addOptionBtn}
+              />
+              <div></div>
             </>
           )}
 
-          <button type="button" onClick={() => removeQuestion(index)}>
-            Delete question
+          <button
+            type="button"
+            onClick={() => removeQuestion(index)}
+            className={styles.deleteQuestionBtn}
+          >
+            <Icon name="delete" className={styles.deleteIcon} />
           </button>
         </div>
       ))}
-
-      <button type="button" onClick={addQuestion}>
-        Add question
-      </button>
-      <button type="submit">Create quiz</button>
+      <div className={styles.buttonWrapper}>
+        <Button
+          text=" Add question"
+          onClick={addQuestion}
+          className={styles.addQuestionBtn}
+        />
+        <button type="submit" className={styles.submitBtn}>
+          Create quiz
+        </button>
+      </div>
     </form>
   );
 }

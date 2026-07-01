@@ -1,0 +1,26 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+
+  color: var(--color-accent);
+}
+
+.text {
+  font-size: 18px;
+  color: var(--color-secondary-text);
+}
+
+.button {
+  min-width: 180px;
+}

@@ -1,12 +1,14 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 50px;
-  padding: 12px;
+  width: 300px;
   align-items: start;
   min-width: 300px;
   border-radius: 20px;
-  box-shadow: 0 2px 4px 0 rgba(50, 63, 80, 0.1);
+  box-shadow: var(--shadow-card);
+  background-color: var(--color-surface);
 }
 
 .link {
@@ -15,9 +17,66 @@
 }
 
 .button {
-  border: 1px solid #85a3c9;
-  border-radius: 20px;
-  padding: 6px 15px;
-  height: 44px;
-  align-self: center;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.deleteIcon {
+  fill: black;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: rgba(199, 224, 246, 0.2);
+}
+
+.title {
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0em;
+}
+
+.questionsCount {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0em;
+}
+
+.modalTitle {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+}
+
+.modalText {
+  margin-bottom: 40px;
+
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #fff;
+}
+
+.deleteBtn {
+  color: #d60000;
+}
+
+.btnWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }

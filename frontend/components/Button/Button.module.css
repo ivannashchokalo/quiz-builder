@@ -1,0 +1,34 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.primary {
+  background-color: var(--color-border);
+  color: var(--color-text-secondary);
+
+  transition: background-color 250ms ease(0.4, 0, 0.2, 1);
+}
+
+.primary:hover,
+.primary:focus-visible {
+  background-color: #9db4d3;
+}
+
+.secondary {
+  border: 1px solid #85a3c9;
+  background-color: transparent;
+
+  transition: border 250ms ease(0.4, 0, 0.2, 1);
+}
+
+.secondary:hover,
+.secondary:focus-visible {
+  background: rgba(199, 224, 246, 0.5);
+}

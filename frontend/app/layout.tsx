@@ -1,12 +1,20 @@
-import { Manrope } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import TanStackProvider from "@/providers/TanStackProvider";
+import { Metadata } from "next";
 
-const manrope = Manrope({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-manrope",
   weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+  display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: "Quiz Builder",
+  description:
+    "A full-stack quiz builder application where users can create, manage, and explore custom quizzes with multiple question types.",
+};
 
 export default function RootLayout({
   children,
@@ -14,10 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={montserrat.variable}>
       <body>
         <TanStackProvider>
-          <main>{children}</main>
+          <main style={{ minHeight: "100vh" }}>{children}</main>
         </TanStackProvider>
       </body>
     </html>

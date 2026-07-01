@@ -3,7 +3,6 @@ import { Quiz, QuizDetails, CreateQuizRequest } from "@/types/quiz";
 
 export const getAllQuizzes = async () => {
   const { data } = await api.get<Quiz[]>("/quizzes");
-  console.log(11111, data);
   return data;
 };
 

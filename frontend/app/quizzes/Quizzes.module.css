@@ -1,18 +1,24 @@
-.createLink {
-  display: block;
-  width: 150px;
-  margin-bottom: 50px;
-  background-color: #c7e0f6;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 0.9;
+.title {
+  margin-bottom: 40px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.5;
   letter-spacing: 0em;
-  color: #0c1118;
+  color: var(--color-text-heading);
+  text-align: center;
 }
 
-.createLink:hover,
-.createLink:focus {
-  opacity: 0.8;
+.button {
+  width: 150px;
+  margin-bottom: 40px;
+}
+
+.emptyText {
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0em;
+  text-align: center;
+  color: var(--color-text-secondary);
 }
